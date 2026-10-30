@@ -1,0 +1,114 @@
+/* Site styles. Plain CSS, no framework. Change the colors in :root to match the client. */
+:root {
+  --text: #1f2933;
+  --muted: #616e7c;
+  --border: #d9dee3;
+  --bg: #f5f7fa;
+  --card: #ffffff;
+  --accent: #2563eb;
+  --accent-dark: #1e40af;
+  --danger: #b42318;
+  --ok: #027a48;
+  --radius: 10px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--text);
+  background: var(--bg);
+}
+
+a { color: var(--accent); text-underline-offset: 2px; }
+a:hover { color: var(--accent-dark); }
+
+h1, h2, h3 { line-height: 1.2; }
+h1 { margin-top: 0; font-size: 1.8rem; }
+
+/* Header */
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  padding: 0.75rem 2rem;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+}
+.brand { font-size: 1.15rem; font-weight: 600; color: var(--text); text-decoration: none; }
+.site-header nav { display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem 1.5rem; }
+.site-header nav a { color: var(--text); text-decoration: none; }
+.site-header nav a:hover,
+.site-header nav a[aria-current="page"] { color: var(--accent); }
+
+main { flex: 1; width: 100%; max-width: 1100px; margin: 0 auto; padding: 2rem; }
+
+.site-footer {
+  padding: 1rem 2rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+
+/* Cards */
+.card {
+  padding: 1.5rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.narrow { max-width: 420px; margin: 2rem auto; }
+
+/* Messages */
+.message {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+.message-success { border-color: var(--ok); color: var(--ok); }
+.message-error { border-color: var(--danger); color: var(--danger); }
+
+/* Forms */
+label { display: block; margin: 1rem 0 0.25rem; font-weight: 500; }
+input, select, textarea {
+  width: 100%;
+  padding: 0.5rem 0.65rem;
+  font: inherit;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: #fff;
+}
+button {
+  margin-top: 1.25rem;
+  padding: 0.55rem 1.2rem;
+  font: inherit;
+  font-weight: 500;
+  color: #fff;
+  background: var(--accent);
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+button:hover { background: var(--accent-dark); }
+form.inline { display: inline; }
+button.link {
+  margin: 0;
+  padding: 0;
+  color: var(--text);
+  background: none;
+}
+button.link:hover { color: var(--accent); background: none; }
+
+@media (max-width: 600px) {
+  .site-header, main { padding-left: 1rem; padding-right: 1rem; }
+}
