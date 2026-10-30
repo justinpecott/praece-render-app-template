@@ -1,0 +1,34 @@
+{% load static %}<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}My App{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/site.css' %}">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="{% url 'home' %}">My App</a>
+    {% if user.is_authenticated %}
+      {% with name=request.resolver_match.url_name|default:"" %}
+      <nav>
+        <a href="{% url 'home' %}" {% if name == "home" %}aria-current="page"{% endif %}>Home</a>
+        {% if user.is_staff %}<a href="{% url 'admin:index' %}">Admin</a>{% endif %}
+        <form method="post" action="{% url 'logout' %}" class="inline">
+          {% csrf_token %}
+          <button type="submit" class="link">Log out ({{ user.get_username }})</button>
+        </form>
+      </nav>
+      {% endwith %}
+    {% endif %}
+  </header>
+  <main>
+    {% for message in messages %}
+      <p class="message message-{{ message.tags }}">{{ message }}</p>
+    {% endfor %}
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="site-footer">My App</footer>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

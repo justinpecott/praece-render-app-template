@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="card">
+  <h1>Welcome, {{ user.get_username }}</h1>
+  <p>This app is up and running. Describe what you'd like it to do, and it will be built here.</p>
+  {% if user.is_staff %}
+    <p>Manage users and data in the <a href="{% url 'admin:index' %}">admin</a>.</p>
+  {% endif %}
+</section>
+{% endblock %}
